@@ -29,6 +29,10 @@ dependencies {
 
     // [4] 타임리프 템플릿 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // [5] 롬복 라이브러리
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {

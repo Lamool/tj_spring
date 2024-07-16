@@ -1,4 +1,6 @@
-package example.day08.board;
+package example.day09.board;
+
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,13 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+@Component
 public class BoardDao {
     // JDBC 인터페이스
     Connection conn;
     PreparedStatement ps;
     ResultSet rs;
-    // 싱글톤
-    private static BoardDao boardDao = new BoardDao();
+
     private BoardDao(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -23,10 +25,6 @@ public class BoardDao {
             System.out.println(">>MessageDAO.getInstance() 오류 : " +e);
         }
     }
-    public static BoardDao getInstance(){
-        return boardDao;
-    }
-    // 싱글톤 패턴 끝
 
     // 1.글추가
     public boolean boardWrite(BoardDto dto){
