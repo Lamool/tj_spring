@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body > div{
+            display: flex;
+        }
+        body > div > div {
+            width: 33%;
+        }
+        div{
+            border: 2px solid black;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td{
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <!--
+        요구사항 
+            1. 확인               [비회원 게시판] - 비회원이면서 제목 내용 비밀번호 입력, 
+                                                - 모든 글 출력할때 날짜 제목 조회수 순으로
+                                                - 제목 누르면 상세 글 및 모든 정보 출력
+                                                - 상세 글에서 수정시 비밀번호 요구, 일치해야 수정 가능
+            2. 분석 => 설계   
+            [백엔드]
+            1. 메모리 구성                       - 등록시(제목, 내용, 비밀번호), 출력시(날짜, 조회수) : 배열? 문자열? 개체?
+                                                    배열: 1. [] X 5   2. board = [[title, content, passwd, date], []...]
+                                                    문자열: ["title1, content1, passwd1, date1", "2, 2, 2, 2", ...]
+            2. 기능 구성                         - 등록 add(), 모든글출력 allPrint(), 상세글 출력 Print(), 수정 update(), 삭제 delete() 등?
+            3. 기능마다의 로직 순서도
+                                                - add() : 1. HTML 입력값 가져오기, 2. 유효성검사, 3.배열 저장, 4. 안내
+                                                - allPrint() : 1. HTML 요소 가져오기 (Where) 2. 반복문으로 배열데이터 HTML 구성 (What) 3. HTML 요소에 대입
+                                                - Print() : 1. 상세정보 인덱스 2. 인덱스 정보 출력
+                                                - update() : 1. 인덱스 받기 2. 비밀번호 입력 받기 3. 비밀번호와 인덱스값이 맞으면 해당 인덱스 수정
+                                                - delete() : 1. 인덱스 받기 2. 비밀번호 입력 받기 3. 비밀번호와 인덱스값이 맞으면 해당 인덱스 삭제
+            [프론트엔드]
+            1. HTML 구성
+            
+            3. 개발/구현                         
+            4. 테스트                            
+            5. 유지보수
+    -->
+
+    <div>
+        <div>
+            <h3>등록 페이지</h3>
+            제목 : <input id="titleInput" type="text">
+            내용 : <textarea id="contentInput"></textarea>
+            비밀번호 : <input id="passwordInput" type="password">
+            <button onclick="boardWrite()">등록</button>
+        </div>
+
+        <div>
+            <h3>전체 페이지</h3>
+            <table>
+                <thead>
+                    <tr><th>날짜</th><th>제목</th><th>조회수</th></tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="viewPage">
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src='board_day09.js'></script>
+</body>
+</html>
