@@ -1,0 +1,15 @@
+회원가입 구현
+	[1] 회원가입 DB 설계 ( 강의 카톡방 SQL 사용 )
+	[2] MemberDto 클래스 (롬복 사용)
+	[3] MemberController 에서 회원가입 메소드  구현 ( HTTP 매핑 테스트 )
+		회원가입 REST : POST , /member/signup
+		받기/요청 : 아이디 , 비밀번호 , 이름 , 이메일 , 연락처
+		주고/응답 : boolean : true/false
+	[4] MemberService 에서 회원가입 메소드 구현 ( SpringMvc 빈 사용 )
+	[5] MemberDao 에서  회원가입 메소드 구현
+	===============================
+	[6] Talend API 테스트 진행
+	===============================
+	[7] JS 에서 AJAX 이용한 회원가입 구현
+		- 성공시 '회원가입성공' alert 출력 후 로그인페이지로 이동
+		- 실패시 '회원가입실패' alert 출력

@@ -12,7 +12,7 @@ public class AppStart {
     public static void main(String[] args) {
         SpringApplication.run(AppStart.class);
 
-//        [1]
+//        [1] Console
 //        // 1. 할 일 등록
 //        ToDoController.getInstance().todoCreate("파이썬공부");
 //

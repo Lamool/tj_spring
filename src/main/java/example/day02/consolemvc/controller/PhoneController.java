@@ -15,12 +15,13 @@ public class PhoneController {
         return phoneCont;
     }
 
-
+    // 1.
     public boolean postPhone(PhoneDto phoneDto) {
         return PhoneDao.getInstance().postPhone(phoneDto);
 
     }
 
+    // 2.
     public ArrayList<PhoneDto> getPhone() {
         return PhoneDao.getInstance().getPhone();
 

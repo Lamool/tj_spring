@@ -1,0 +1,47 @@
+console.log('signup.js');
+
+// 1. 회원가입
+function doSignup() {
+    console.log('doSignup()');
+
+    // 1. 입력값 가져오기
+    let id = document.querySelector('#id').value;
+    let pw = document.querySelector('#pw').value;
+    let name = document.querySelector('#name').value;
+    let email = document.querySelector('#email').value;
+    let phone = document.querySelector('#phone').value;
+
+    // 2. 객체
+    let info = {
+        id : id,
+        pw : pw,
+        name : name,
+        email : email,
+        phone : phone
+    };
+    console.log(info);
+
+    // 3. ajax (jquery 라이브러리 필요), ajax는 비동기 통신
+    $.ajax({
+        async : false,               // async : true 비동기(기본값), false : 동기식  ((순차 처리 할지 말지 / true는 기본값이라 안 넣어줘도 된다))
+        method : 'post',            // HTTP POST
+        url : "/member/signup",     // HTTP URL
+        data : info,                // HTTP 보낼 데이터
+        success : (result) => {     console.log(result);    // HTTP ((통신 성공시 응답)) 받을 데이터
+            if (result) {
+                alert('회원가입성공');
+                location.href="/member/login";      // 페이지 전환
+            } else {
+                alert('회원가입실패');
+            }
+        }   // success end
+    });  // ajax end
+
+    // 4. 결과에 따른 처리
+    alert('ajax 처리 이후');
+    // ((ajax 멀티스레드라(?) async가 true면 요청한 거 받아오는 사이에 밑에 alert('ajax 처리 이후');를 먼저 실행시켜버림))
+    // ((async가 false면 기다리고(?)))
+    // async : true, alert('ajax 처리 이후'); -> alert('회원가입성공');
+    // async : false, alert('회원가입성공'); -> alert('ajax 처리 이후');
+
+}   // doSignup end
