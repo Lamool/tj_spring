@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 
 public class Dao {
     public Connection conn = null;
-    // public ResultSet rs = null;
 
     // ========== DB 연동하는 부모 클래스 사용 ========== //
     public Dao() {

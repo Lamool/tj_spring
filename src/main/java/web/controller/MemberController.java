@@ -1,15 +1,13 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
 import web.service.MemberService;
 
 @RestController
 @RequestMapping("/member")
-public class MemberController {
+public class  MemberController {
 
     @Autowired MemberService memberService;
 
@@ -22,5 +20,33 @@ public class MemberController {
         System.out.println("memberDto = " + memberDto);
         return memberService.mSignup(memberDto);
     }
+
+    // POST http://localhost:8080/member/login?id=qwe&pw=asd
+    // 2. 로그인
+    @PostMapping("/login")
+    public boolean mLogin(MemberDto memberDto) {
+        System.out.println("MemberController.mLogin");
+        System.out.println("memberDto = " + memberDto);
+        return memberService.mLogin(memberDto);
+    }
+
+    // 3.. 로그인 체크
+    @GetMapping("/login/check")
+    public MemberDto mLoginCheck() {
+        return memberService.mLoginCheck();
+    }
+
+    // 4. 로그아웃
+    @GetMapping("/logout")
+    public void mLogout() {
+        memberService.mLogout();
+    }
+
+    // 5. 마이페이지 정보
+    @GetMapping("/my/info")
+    public MemberDto mMyInfo() {
+        return memberService.mMyInfo();
+    }
+
 
 }

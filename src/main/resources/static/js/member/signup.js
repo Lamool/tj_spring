@@ -13,7 +13,7 @@ function doSignup() {
 
     // 2. 객체
     let info = {
-        id : id,
+        id : id,            // ((필드명과 같아야 한다. dto랑 똑같게. >>id :))
         pw : pw,
         name : name,
         email : email,
@@ -27,7 +27,10 @@ function doSignup() {
         method : 'post',            // HTTP POST
         url : "/member/signup",     // HTTP URL
         data : info,                // HTTP 보낼 데이터
-        success : (result) => {     console.log(result);    // HTTP ((통신 성공시 응답)) 받을 데이터
+        success : (result) => {     console.log(result);    // HTTP ((통신 성공시 응답)) 받을 데이터    
+                                                    // ((result (RestController라서 responsebody가 들어가있으니까 JSON 형식으로) true 혹은 false를 줌))
+                                                    // ((boolean / return memberService.mSignup(memberDto);))
+            // 4. 결과에 따른 처리
             if (result) {
                 alert('회원가입성공');
                 location.href="/member/login";      // 페이지 전환
@@ -37,8 +40,7 @@ function doSignup() {
         }   // success end
     });  // ajax end
 
-    // 4. 결과에 따른 처리
-    alert('ajax 처리 이후');
+    //alert('ajax 처리 이후');
     // ((ajax 멀티스레드라(?) async가 true면 요청한 거 받아오는 사이에 밑에 alert('ajax 처리 이후');를 먼저 실행시켜버림))
     // ((async가 false면 기다리고(?)))
     // async : true, alert('ajax 처리 이후'); -> alert('회원가입성공');

@@ -22,10 +22,17 @@ public class ViewController {
         return "/member/signup.html";       // ((파일의 경로))
     }
 
-    @GetMapping("member/login")
+    @GetMapping("/member/login")
     public String mLogin() {
         return "/member/login.html";
     }
+
+    // ((templates에 있는 파일들은 순수한 html이 아니기 때문에 렌더링이 필요함. Controller 매핑해줘야 됨. 이거 안 해주고 그냥 쓰면 안 됨.))
+    @GetMapping("/member/mypage")
+    public String mMyPage() {
+        return "/member/myinfo.html";
+    }
+
 
 
 }

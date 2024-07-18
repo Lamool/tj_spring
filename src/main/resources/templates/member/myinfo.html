@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <title>Title</title>
+</head>
+<body>
+    <div th:replace="~{/header.html :: header}"></div>
+
+    마이 페이지
+
+    <div id="myInfoBox">
+
+    </div>
+<!-- 내가 한 거
+    아이디 : <div id="id"></div> <br>
+    이름 : <div id="name"></div> <br>
+    이메일 : <div id="email"></div> <br>
+    전화번호 : <div id="phone"></div> <br> -->
+
+    <div th:replace="~{/footer.html :: footer}"></div>
+
+    <!-- <script  src="http://code.jquery.com/jquery-latest.min.js"></script>       header에 이미 있으므로 없어도 됨 -->
+    <script src="/js/member/myinfo.js"></script>
+</body>
+</html>
