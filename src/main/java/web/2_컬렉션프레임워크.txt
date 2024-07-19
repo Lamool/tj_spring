@@ -1,5 +1,10 @@
 * 인터페이스 : 동일한 목적하의 서로 다른 기능(오버라이딩)을 수행하기 위한 통합
 * 구현(객)체 : 해당 인터페이스를 구현(오버라이딩)한 클래스로 객체 생성
+컬렉션 프레임워크
+    - 컬렉션(수집) , 프레임워크(미리 만들어진 틀)
+    - 자료를 수집하는 방법을 미리 만들어둔 인터페이스/클래스/메소드
+    - 복잡한 자료구조를 제공받는다.
+
 - Collection
     [1] List 인터페이스
         - 공통점 : 저장된 순서(인덱스) 이용한 데이터 관리, 데이터 중복 허용
@@ -31,4 +36,54 @@
 
 
     [2] Set 인터페이스
+        - 공통점 : 저장된 순서(인덱스) 없고, 데이터 중복 허용하지 않는다.
+        - 1. HashSet 클래스
 
+        - 자주 사용되는 메소드
+            1. .add(요소)    : set 객체내 요소 추가
+            2. .size()       : set 객체내 요소 총개수
+            3. .remove(요소) : set 객체내 동일한 요소가 존재하면 삭제
+            4. .contains(요소) : set 객체내 동일한 요소가 존재하면 true 없으면 false
+            5. .clear()        : 리스트내 전체 요소 삭제
+            6. .isEmpty()      : 리스트내 요소가 하나도 없으면 true 요소가 존재하면 false
+            7. .iterator() : 반복자 인터페이스 반환
+               .hasNext() : 다음 요소가 존재하면 true 없으면 false
+               .next() : 다음 요소 호출
+
+        - set 중복을 제거하는 방법 : 객체의 주소값을 비교해서 동일한 주소값을 저장하지 않는다
+            - 리터럴 제외한 객체들을 중복 제거 재정의
+                1. hashCode() 재정의((오버라이딩))
+                    @Override
+                    public int hashCode() {
+                        return memberId;
+                    }
+
+                2. equals() 재정의
+                    @Override
+                    public boolean equals(Object obj) {
+                        if (obj instanceof Member) {
+                            Member member = (Member)obj;
+                            if (this.memberId == member.memberId) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        return false;
+                    }
+
+    [2] Map 인터페이스
+        - 공통점 : 저장된 순서(인덱스) 없고, key-value 이루어진 한쌍(엔트리)
+        - key : 중복 불가능, value : 중복 가능
+        - 1. HashMap 클래스
+
+        - 자주 사용되는 메소드
+            1. .put(key, value) : key와 value 엔트리 추가
+            2. .size() : map 객체내 엔트리 개수
+            3. .get(key) : map 객체내 key 해당하는 value 반환
+            4. .remove( key ) : map 객체내 key 해당 하는 엔트리 삭제
+            5. .clear()        : map 객체내 전체 엔트리 삭제
+            6. .isEmpty()      : map 객체내 엔트리가 하나도 없으면 true 엔트리가 존재하면 false
+            7. .keySet() : map 객체내 모든 key 반환
+            8. .values() : map 객체내 모든 value 반환
+            9. .entrySet() : map 객체내 모든 entry 반환
