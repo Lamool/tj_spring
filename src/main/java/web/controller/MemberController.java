@@ -48,5 +48,12 @@ public class  MemberController {
         return memberService.mMyInfo();
     }
 
+    // 6. 아이디 중복 검사
+    @GetMapping("/idcheck")
+    public boolean mIdCheck(String id) {
+        return memberService.mIdCheck(id);
+    }
+
+
 
 }
