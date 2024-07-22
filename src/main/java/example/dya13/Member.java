@@ -9,18 +9,17 @@ public class Member implements Comparable<Member> {
         this.age = age;
     }
 
-
-    // * Comparable 인터페이승의 추상메소드 정의
+    // * Comparable인터페이스의 추상메소드 정의
     @Override
     public int compareTo(Member o) {
-        // 1. name 기준으로 정렬, String 클래스내 compareTo 활용
-        // return this.name.compareTo(o.name);
-        // 2. age 기준으로 정렬
-        if ( this.age < o.age ) { return -1; }
-        else if (this.age== 0){ return 0;
-        } else {
-            return 1;
-        }
+        // 1. name 기준으로 정렬 , String 클래스내 compareTo 활용
+        // return this.name.compareTo( o.name );
+        // 2. age 기준으로 정렬  , int 기본타입 이므로 직접 정렬기준 비교하기
+            // 오름차순 : -1 :매개변수보다 더 작으면  , 0 : 같으면  , 1 : 매개변수보다 크면
+            // 내림차순 : 1 :매개변수보다 더 작으면  , 0 : 같으면  , -1 : 매개변수보다 크면
+        if( this.age < o.age ) { return -1; }
+        else if( this.age == o.age ) { return 0; }
+        else return 1;
     }
 
     @Override

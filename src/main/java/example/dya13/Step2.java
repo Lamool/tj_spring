@@ -9,22 +9,22 @@ public class Step2 {
         // 1. 이진 트리
         TreeSet<Integer> scores = new TreeSet<>();
             // Set<Integer> scores = new TreeSet<>();
-            // Set 인터페이스 얘는 Tree 자료구조의 메소드가 없다.
-        
+            // Set 인터페이스 에는 Tree 자료구조의 메소드가 없다.
+
         // 2.
-        scores.add(23);
-        scores.add(10);
-        scores.add(48);
-        scores.add(15);
-        scores.add(7);
-        scores.add(22);
-        scores.add(56);
-        
+        scores.add( 23 );
+        scores.add( 10 );
+        scores.add( 48 );
+        scores.add( 15 );
+        scores.add( 7 );
+        scores.add( 22 );
+        scores.add( 56 );
+
         // 3.
         System.out.println("scores = " + scores);
 
         // 4. 순회
-        scores.forEach (score -> { System.out.println("score = " + score); });
+        scores.forEach( score -> {  System.out.println("score = " + score);   });
 
         // 5. 트리 관련 메소드 제공
         System.out.println(" 가장 낮은 점수,가장 왼쪽 데이터  = " + scores.first() );
@@ -38,11 +38,9 @@ public class Step2 {
         System.out.println(" 48보다 이하   = " + scores.headSet( 48 , true ) );
         System.out.println(" 10이상 이면서 48미만  = " + scores.subSet( 10 , true , 48 , false ) );
 
-
-        
         // 6. TreeMap
-        TreeMap<Integer, String> treeMap = new TreeMap<>();
-        
+        TreeMap<Integer , String > treeMap = new TreeMap<>();
+
         // 7.
         treeMap.put(23, "apple");
         treeMap.put(10, "forever");
@@ -59,18 +57,16 @@ public class Step2 {
         });
 
         // 9.
-        System.out.println("treeMap.firstEntry() = " + treeMap.firstEntry());
-        System.out.println("treeMap.lastEntry() = " + treeMap.lastEntry());
-        System.out.println("treeMap.lowerEntry(48) = " + treeMap.lowerEntry(48));
-        System.out.println("treeMap.higherEntry(48) = " + treeMap.higherEntry(48));
+        System.out.println("treeMap.firstEntry()  = " + treeMap.firstEntry());
+        System.out.println("treeMap.lastEntry()  = " + treeMap.lastEntry());
+        System.out.println("treeMap.lowerEntry(48)  = " + treeMap.lowerEntry(48));
+        System.out.println("treeMap.higherEntry(48)  = " + treeMap.higherEntry(48));
         System.out.println("treeMap.floorEntry(48) = " + treeMap.floorEntry(48));
         System.out.println("treeMap.ceilingEntry(48) = " + treeMap.ceilingEntry(48));
-        System.out.println("treeMap.descendingMap() = " + treeMap.descendingMap());
-        System.out.println("treeMap.tailMap(48, true) = " + treeMap.tailMap(48, true));
-        System.out.println("treeMap.headMap(48, true) = " + treeMap.headMap(48, true));
-        System.out.println("treeMap.subMap(19, true, 48, false) = " + treeMap.subMap(19, true, 48, false));
-
-        
+        System.out.println("treeMap.descendingMap()  = " + treeMap.descendingMap());
+        System.out.println("treeMap.tailMap( 48 , true ) = " + treeMap.tailMap(48, true));
+        System.out.println("treeMap.headMap( 48 , true )  = " + treeMap.headMap(48, true));
+        System.out.println("treeMap.subMap( 10 , true , 48 , false ) = " + treeMap.subMap(10, true, 48, false));
 
     }
     

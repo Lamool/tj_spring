@@ -99,23 +99,24 @@ public class MemberDao extends Dao {
     }
 */
 
-    // 6. 아이디 중복 검사
+    // 6. 아이디 중복 검사 ( C *R U D )
     public boolean mIdCheck(String id) {
         System.out.println("MemberDao.mIdCheck");
         System.out.println("id = " + id);
-        try {
 
-            String sql = "select id from member where binary(id) = ?";
+        // sql은 대소문자를 구분하지 않고 검색 진행.
+        try{
+            String sql = "select id from member where binary(id) = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1 , id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return true;    // 중복이다
+                return true;        // 중복이다.
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return false;       // 중복이 아니다
+        return false; // 중복이 아니다.
     }
 
 

@@ -9,9 +9,13 @@
     
     회원가입 페이지
     <form>
-        아이디 : <input id="id" onkeyup="idCheck()" /> <div class="idCheckBox"></div>
-        비밀번호 : <input id="pw" type="password" /> <br/>
-        비밀번호 확인 : <input id="pwConfirm" type="password" onkeyup="pwCheck()" /> <div class="pwCheckBox"></div>
+        아이디 : <input onkeyup="idCheck()" id="id" />
+        <div class="idCheckBox"></div>
+
+        비밀번호 : <input onkeyup="pwCheck()" id="pw" type="password" /> <br/>
+        비밀번호 확인 : <input onkeyup="pwCheck()" id="pwConfirm" type="password" />
+        <div class="pwCheckBox"></div>
+
         이름 : <input onkeyup="nameCheck()" id="name" />
         <div class="nameCheckBox"></div>
 
@@ -27,8 +31,6 @@
 
     <div th:replace="~{/footer.html :: footer}"></div>
 
-
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/js/member/signup.js"></script>
 </body>
 </html>
