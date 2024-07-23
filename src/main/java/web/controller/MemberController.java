@@ -54,6 +54,29 @@ public class  MemberController {
         return memberService.mIdCheck(id);
     }
 
+    // 7. 회원 정보 출력
+    @GetMapping("/update/print")
+    public MemberDto mUpdatePrint() {
+        return memberService.mUpdatePrint();
+    }
+
+
+    // 8. 회원 정보 수정
+    @PutMapping("/update")
+    public boolean mUpdate(String pw, String newPw, String name, String phone) {
+        System.out.println(pw);
+        System.out.println(newPw);
+        return memberService.mUpdate(pw, newPw, name, phone);
+    }
+
+
+
+    // 9. 회원 탈퇴
+    @DeleteMapping("/leave")
+    public boolean mLeave(String pwConfirm) {
+        return memberService.mLeave(pwConfirm);
+    }
+
 
 
 }

@@ -4,8 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
 
@@ -91,6 +93,56 @@ public class MemberService {
     public boolean mIdCheck(String id) {
         return memberDao.mIdCheck(id);
     }
+
+
+    // 7. 회원 정보 출력
+    public MemberDto mUpdatePrint() {
+        // 1. 현재 탈퇴하는 회원의 로그인된 번호
+        // 1. 로그인 세션객체 호출
+        Object object = request.getSession().getAttribute("loginDto");
+        // 2. 로그인이 안 된 상태이면 false
+        if (object == null) return null;
+        // 3. 로그인 세션 객체내 로그인 정보를 타입 변환
+        MemberDto memberDto = (MemberDto)object;
+        // 4. 로그인 정보에서 회원정보만 추출
+        int loginNo = memberDto.getNo();
+        // 예전에 만들어둔 mLoginCheck(); 호출해서 써도
+
+        // 5. dao에게 전달
+        return memberDao.mUpdatePrint(loginNo);
+    }
+
+
+
+    // 8. 회원 정보 수정
+    public boolean mUpdate(MemberDto memberDto) {
+        return memberDao.mUpdate(memberDto);
+    }
+
+
+    // 9. 회원 탈퇴
+    public boolean mLeave(String pwConfirm) {
+        // 1. 현재 탈퇴하는 회원의 로그인된 번호
+            // 1. 로그인 세션객체 호출
+        Object object = request.getSession().getAttribute("loginDto");
+            // 2. 로그인이 안 된 상태이면 false
+        if (object == null) return false;
+            // 3. 로그인 세션 객체내 로그인 정보를 타입 변환
+        MemberDto memberDto = (MemberDto)object;
+            // 4. 로그인 정보에서 회원정보만 추출
+        int loginNo = memberDto.getNo();
+            // 예전에 만들어둔 mLoginCheck(); 호출해서 써도
+
+            // 5. dao에게 전달
+        boolean result = memberDao.mLeave(loginNo, pwConfirm);
+            // 6. 만약에 탈퇴 성공시 로그아웃
+        if (result) {
+            mLogout();
+        }
+            // 7.
+        return result;
+    }
+
 
 
 

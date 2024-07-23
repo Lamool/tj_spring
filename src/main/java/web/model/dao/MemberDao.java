@@ -120,4 +120,75 @@ public class MemberDao extends Dao {
     }
 
 
+    // 7. 회원 정보 출력
+    public MemberDto mUpdatePrint(int loginNo) {
+        try {
+            System.out.println(loginNo);
+            String sql = "select * from member where no = ?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, loginNo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                MemberDto memberDto = MemberDto.builder()
+                        .no(rs.getInt("no"))
+                        .id(rs.getString("id"))
+                        .pw(rs.getString("pw"))
+                        .phone(rs.getString("phone"))
+                        .email(rs.getString("email"))
+                        .name(rs.getString("name"))
+                        .build();
+                System.out.println(memberDto);
+                return memberDto;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+
+    // 8. 회원 정보 수정
+    public boolean mUpdate(MemberDto memberDto) {
+        System.out.println("MemberDao.mUpdate");
+        System.out.println("memberDto = " + memberDto);
+
+        try {
+            String sql = "update member set name = ?, pw = ?, phone = ? where no = ?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, memberDto.getName());
+            ps.setString(2, memberDto.getPw());
+            ps.setString(3, memberDto.getPhone());
+            ps.setInt(4, memberDto.getNo());
+            int count = ps.executeUpdate();
+            if (count == 1) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
+        return false;
+    }
+
+
+    // 9. 회원 탈퇴
+    public boolean mLeave(int loginNo, String pwConfirm) {
+        System.out.println("MemberDao.mLeave");
+        System.out.println("loginNo = " + loginNo);
+
+        try {
+            String sql = "delete from member where no = ? and pw = ?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, loginNo);
+            ps.setString(2, pwConfirm);
+            int count = ps.executeUpdate();
+            if (count == 1) return true;
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
+        return false;
+    }
+
+
+
 }   // class end

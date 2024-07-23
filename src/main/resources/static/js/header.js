@@ -4,6 +4,7 @@ console.log('header.js');
 doLoginCheck();
 function doLoginCheck() {
     $.ajax({
+        async : false,
         method : 'get',
         url : "/member/login/check",
         success : (result) => {
@@ -20,6 +21,7 @@ function doLoginCheck() {
 // 2. 로그아웃
 function doLogout() {
     $.ajax({
+        async : false,
         method : 'get',
         url : "/member/logout",
         success : (result) => {
