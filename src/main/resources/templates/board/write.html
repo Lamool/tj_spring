@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:replace="~{ /header.html :: header }"></div>
+    <h3> 게시물 쓰기 페이지 </h3>
+    <form class="boardWriteForm">
+        <div>
+            카테고리 : <select class="categoryBox" name="bcno">
+            <option value="카테고리번호FK"> 카테고리이름 </option>
+        </select>
+        </div>
+        <div>
+            <div> 제목 : <input type="text" name="btitle" class="btitle" /> </div>
+            <div> 내용 : <textarea class="bcontent" name="bcontent"> </textarea> </div>
+            <div> 첨부파일 : <input type="file" name="uploadFile" class="bFile" /> </div>       <!-- ((name이랑 DTO 필드명이랑 같아야함)) -->
+            <button type="button" onclick="doBoardWrite()">글쓰기</button>
+        </div>
+    </form>
+    <script src="/js/board/write.js"></script>
+    <div th:replace="~{ /footer.html :: footer }"></div>
+</body>
+</html>

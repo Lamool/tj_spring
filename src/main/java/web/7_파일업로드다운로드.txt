@@ -1,0 +1,46 @@
+- 스트림 : 데이터가 다니는 통로의 흐름
+    - 주로 자바 외 장치와 데이터 주고 받을때 사용  : 키보드 , 파일처리 , JDBC , 네트워크
+
+- HTML 에서 첨부파일 입력받을때
+    1. HTML : <input type="file" class="bfile" />
+    2. JS : document.querySelector('.bfile').value
+    - "C:\fakepath\업로드한파일명"
+    -  JS는 유저(클라이언트)의 실제 파일 경로를 얻어낼수 없다. 브라우저 법/규칙
+
+- 업로드 : 파일 올리기
+    - 유저(클라이언트)PC/모바일 의 파일을 서버( 스프링 내장 톰캣 서버 ) 로 이동/복사
+    - 이동/복사
+        - 대용량 이동시에는 HTTP 는 바이트형식 만 지원
+- 다운로드 : 파일 내려받기
+
+
+1. 업로드 구현 방법
+    1. HTML : <form class="boardWriteForm">
+                <input type="file" class="bfile" />
+                </form>
+    2. FORM 전체 HTML 호출
+        JS : let boardWriteForm = document.querySelector('.boardWriteForm')
+    3. FORM 전체 HTML 를 바이트 로 변환해주는 기능이 담긴 객체로 변환
+        - new FormData()
+        JS : let boardWriteFormData = new FormData( boardWriteForm );
+
+    4. AJAX 대용량 폼 전송 필수 옵션 , HTTP contentType 의 Multipart/form 타입
+        - method : post
+        - data : boardWriteFormData
+        - contentType : false
+        - processData : false
+
+* HTML FORM 과 자바의 BoardDto 필드와 매핑 할때 주의할점
+    - HTML name 속성과 dto의 필드명 과 동일해야한다.
+    - FORMDATA 전송시 FORM안에 입력된 데이터(value)들을 식별할때는 name 속성의 이름으로 식별하기 때문이다.
+
+*. 자바에서 대용량 바이트의 타입
+    - MultipartFile 인터페이스 : Spring 제공하는 라이브러리
+        - 주로 대용량 바이트 파일을 매핑/조작 할때 사용되는 인터페이스
+
+
+
+
+
+
+

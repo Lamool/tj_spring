@@ -114,10 +114,10 @@ public class MemberService {
 
 
 
-    // 8. 회원 정보 수정
-    public boolean mUpdate(MemberDto memberDto) {
-        return memberDao.mUpdate(memberDto);
-    }
+//    // 8. 회원 정보 수정
+//    public boolean mUpdate(MemberDto memberDto) {
+//        return memberDao.mUpdate(memberDto);
+//    }
 
 
     // 9. 회원 탈퇴

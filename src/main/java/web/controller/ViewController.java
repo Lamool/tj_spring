@@ -44,5 +44,32 @@ public class ViewController {
     }
 
 
+    // ============= [3] 게시판 관련 =============
+    // 전체 게시물 페이지
+    @GetMapping("/board")
+    public String board() {
+        return "/board/board.html";
+    }
+
+    // 게시물 쓰기 페이지
+    @GetMapping("/board/write")
+    public String bWrite() {
+        return "/board/write.html";
+    }
+
+    // 게시물 수정 페이지
+    @GetMapping("/board/update")
+    public String bUpdate() {
+        return "/board/update.html";
+    }
+
+    // 게시물 상세 페이지
+    @GetMapping("/board/view")
+    public String bView() {
+        return "/board/view.html";
+    }
+
+
+
 
 }

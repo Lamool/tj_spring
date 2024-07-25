@@ -61,13 +61,13 @@ public class  MemberController {
     }
 
 
-    // 8. 회원 정보 수정
-    @PutMapping("/update")
-    public boolean mUpdate(String pw, String newPw, String name, String phone) {
-        System.out.println(pw);
-        System.out.println(newPw);
-        return memberService.mUpdate(pw, newPw, name, phone);
-    }
+//    // 8. 회원 정보 수정
+//    @PutMapping("/update")
+//    public boolean mUpdate(String pw, String newPw, String name, String phone) {
+//        System.out.println(pw);
+//        System.out.println(newPw);
+//        return memberService.mUpdate(pw, newPw, name, phone);
+//    }
 
 
 

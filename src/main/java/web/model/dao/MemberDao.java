@@ -148,27 +148,27 @@ public class MemberDao extends Dao {
     }
 
 
-    // 8. 회원 정보 수정
-    public boolean mUpdate(MemberDto memberDto) {
-        System.out.println("MemberDao.mUpdate");
-        System.out.println("memberDto = " + memberDto);
-
-        try {
-            String sql = "update member set name = ?, pw = ?, phone = ? where no = ?;";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, memberDto.getName());
-            ps.setString(2, memberDto.getPw());
-            ps.setString(3, memberDto.getPhone());
-            ps.setInt(4, memberDto.getNo());
-            int count = ps.executeUpdate();
-            if (count == 1) {
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println("e = " + e);
-        }
-        return false;
-    }
+//    // 8. 회원 정보 수정
+//    public boolean mUpdate(MemberDto memberDto) {
+//        System.out.println("MemberDao.mUpdate");
+//        System.out.println("memberDto = " + memberDto);
+//
+//        try {
+//            String sql = "update member set name = ?, pw = ?, phone = ? where no = ?;";
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.setString(1, memberDto.getName());
+//            ps.setString(2, memberDto.getPw());
+//            ps.setString(3, memberDto.getPhone());
+//            ps.setInt(4, memberDto.getNo());
+//            int count = ps.executeUpdate();
+//            if (count == 1) {
+//                return true;
+//            }
+//        } catch (Exception e) {
+//            System.out.println("e = " + e);
+//        }
+//        return false;
+//    }
 
 
     // 9. 회원 탈퇴

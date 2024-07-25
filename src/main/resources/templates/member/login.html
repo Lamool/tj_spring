@@ -15,9 +15,11 @@
         <button type="button" onclick="doLogin()">로그인</button>
     </form>
     
-    <div th:replace="~{/footer.html :: footer}"></div>
 
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    <!-- 내 JS 위에 놔야 한다 -->
+
+    <!--<script  src="http://code.jquery.com/jquery-latest.min.js"></script>     내 JS 위에 놔야 한다 -->
     <script src="/js/member/login.js"></script>
+
+    <div th:replace="~{/footer.html :: footer}"></div>
 </body>
 </html>
