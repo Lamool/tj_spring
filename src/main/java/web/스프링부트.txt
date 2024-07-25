@@ -56,10 +56,26 @@
         - HTML, CSS, JS
         - 순수 프론트엔드
 
-    - 동적 리소스 : 웹 서버가 렌더링 해서 HTML에게 클라이언트에게 반환
-        - resources 하위의 templates 폴더에 저장하고 사용
-        - JSP(HTML + JSTL[JAVA]), 타임리프(HTML + 새로운 문법), 머스테치(HTML + 새로운 문법)
-            JSP : HTML과 JAVA 언어를 하나의 파일에 작성할 수 있도록 만든 템플릿
+    - 동적 리소스 : 웹 서버 가 렌더링 해서 HTML에게 클라이언트에게 반환
+            - resources 하위 의 templates 폴더에 저장하고 사용
+            - JSP( HTML+JSTL[JAVA] ) , 타임리프( HTML+새로운문법 ) , 머스테치( HTML+새로운문법 )
+                JSP : HTML 과 JAVA 언어를 하나의 파일에 작성할수 있도록 만든 템플릿
+                    프론트엔드개발자:HTML,CSS,JS    백엔드개발자 : JAVA , PYTHON
+                    프론트엔드개발자:HTML,CSS,JS <--RESTAPI(AJAX)--->백엔드개발자 : SPRING(JAVA)
 
-        - JAVA와 HTML 조합
+            - JAVA와 HTML 조합 된 템플릿
+            - Spring회사에서는 jsp 지원하지 않는다.
+            - springboot 에서 jsp 사용하는 방법
+                [1] 그레이들
+                - implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+                [2] application.properties
+                    spring.mvc.view.prefix=/WEB-INF/views/
+                    spring.mvc.view.suffix=.jsp
+                [3] .jsp 파일 위치
+                     - jsp 파일들은 프로젝트내 src > main > webapp > WEB-INF > .jsp
 
+        - 현 수업에서 타임리프 사용
+            [1] 그레이들
+            implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+            [2] 타임리프 파일 위치
+                - resources > templates > .html

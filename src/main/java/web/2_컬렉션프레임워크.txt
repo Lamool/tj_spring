@@ -157,6 +157,15 @@
                     9. headSet( 데이터 , true/false )
                     10. subSet( 시작데이터 , true/false , 끝데이터 , true/false )
 
+    - 정렬기준
+        - Comparable 인터페이스 , Comparator 인터페이스
+        - TreeSet< 제네릭 > , TreeMap< 제네릭 > 사용해서 Tree 자료구조 구현 한다.
+        - 제네릭에 들어가는 타입중에 Integer , Double , String 등등 들어간다.
+            - JAVA 제공하는 몇몇 클래스에는 이미 Comparable 구현된 상태이다. 주로 리터럴 자료 타입
+            - 우리 직접 만든 클래스는 Comparable 구현이 안된 상태이다. 직접 만든 클래스도 Comparable 해야된다.
+                1. 클래스 implements Comparable< 클래스 >
+                2. @Override public int compareTo( 클래스 o){}
+
 
 
 
