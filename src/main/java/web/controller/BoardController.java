@@ -34,19 +34,22 @@ public class BoardController {
         return boardService.bWrite(boardDto);
     }
 
-    // 3. 글 전체 호출 처리
+    // 3. 게시물 전체 출력
     @GetMapping("/print")
     public ArrayList<BoardDto> bPrint() {
         System.out.println("BoardController.bPrint");
         return boardService.bPrint();
     }
 
-    // 4. 글 상세 페이지 호출 처리
+    // 4. 게시물 개별 조회 처리
     @GetMapping("/bview")
     public BoardDto bView(int bno) {
         System.out.println("BoardController.bView");
         return boardService.bView(bno);
     }
+
+
+
 
 
 

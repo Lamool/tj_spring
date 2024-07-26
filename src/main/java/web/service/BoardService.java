@@ -70,16 +70,21 @@ public class BoardService {
         return boardDao.bWrite(boardDto);
     }
 
-    // 3. 글 전체 호출 처리
+    // 3. 게시물 전체 출력
     public ArrayList<BoardDto> bPrint() {
         System.out.println("BoardService.bPrint");
         return boardDao.bPrint();
     }
 
-    // 4. 글 상세 페이지 호출 처리
+    // 4. 게시물 개별 조회 처리
     public BoardDto bView(int bno) {
         System.out.println("BoardService.bView");
         return boardDao.bView(bno);
     }
+
+    // 글 수정ㅇ페이지
+
+
+
 
 }

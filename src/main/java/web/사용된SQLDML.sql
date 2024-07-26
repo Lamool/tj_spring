@@ -24,6 +24,22 @@ delete from member where no = 2 and pw = '1234';	# 패스워드는 중복이 가
 
 
 
+----------
+
+# 2. 카테고리 전체 출력
+select * from bcategory;
+
+# 3. 글쓰기
+insert into board(bcno, btitle, bcontent, no) value (1, '안녕', '하하하', 3);
+	# JDBC : insert into board(bcno, btitle, bcontent, no) value (?, ?, ?, ?);
+
+
+select * from board b inner join member m on b.no = m.no order by bdate desc;
+select * from board b inner join member m on b.no = m.no inner join bcategory c on b.bcno = c.bcno where bno=3 order by bdate desc;
+
+
+
+
 
 
 

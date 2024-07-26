@@ -9,11 +9,12 @@
 
     <h3> 게시물 상세 출력 페이지 </h3>
     <div id="view">
-        <div> ( 카테고리명 ) </div>
-        <div> (작성자) , ( 조회수 ) , ( 작성일 ) </div>
-        <div> 안녕하세요1 (제목구역) </div>
-        <div> 내용 (내용구역) </div>
-        <div>
+        <div class="bcName"> ( 카테고리명 ) </div>
+        <div class="etcBox"> (작성자) , ( 조회수 ) , ( 작성일 ) </div>
+        <div class="bTitle"> 안녕하세요1 (제목구역) </div>
+        <div class="bCntent"> 내용 (내용구역) </div>
+        <div class="bfile"> 첨부파일 </div>
+        <div class="btnBox">
             <button type="button" onclick="location.href='/board/update?bno=현재게시물번호'">수정</button>
             <button type="button" onclick="doBoardDelete( 현재게시물번호 )">삭제</button>
         </div>

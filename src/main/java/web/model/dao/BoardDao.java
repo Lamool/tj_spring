@@ -68,7 +68,7 @@ public class BoardDao extends Dao {
         return false;
     }
 
-    // 3. 글 전체 호출 처리
+    // 3. 게시물 전체 출력
     public ArrayList<BoardDto> bPrint() {
         System.out.println("BoardDao.bPrint");
         ArrayList<BoardDto> list = new ArrayList<>();
@@ -85,8 +85,9 @@ public class BoardDao extends Dao {
                         .bfile(rs.getString("bfile"))
                         .bview(rs.getLong("bview"))
                         .bdate(rs.getString("bdate"))
-                        .name(rs.getString("name"))
+                        .id(rs.getString("id"))
                         .bcno(rs.getInt("bcno"))
+                        .bfile(rs.getString(("bfile")))
                         .build();
                 System.out.println(boardDto);
                 list.add(boardDto);
@@ -97,7 +98,7 @@ public class BoardDao extends Dao {
         return list;
     }
 
-    // 4. 글 상세 페이지 호출 처리
+    // 4. 게시물 개별 조회 처리
     public BoardDto bView(int bno) {
         System.out.println("BoardDao.bView");
         try {
@@ -108,12 +109,13 @@ public class BoardDao extends Dao {
             if (rs.next()) {
                 BoardDto boardDto = BoardDto.builder()
                         .bcname(rs.getString("bcname"))
-                        .name(rs.getString("name"))
+                        .id(rs.getString("id"))
                         .bview(rs.getLong("bview"))
                         .bdate(rs.getString("bdate"))
                         .btitle(rs.getString("btitle"))
                         .bcontent(rs.getString("bcontent"))
-                        .bno(rs.getLong("bno"))
+                        .bcno( rs.getInt("bcno") )
+                        .bfile( rs.getString("bfile"))
                         .build();
                 System.out.println(boardDto);
                 return boardDto;
@@ -123,5 +125,12 @@ public class BoardDao extends Dao {
         }
         return null;
     }
+
+
+    //
+
+
+
+
 
 }   // class end
