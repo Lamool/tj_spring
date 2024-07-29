@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
 import web.service.MemberService;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/member")
 public class  MemberController {
@@ -60,6 +62,15 @@ public class  MemberController {
         return memberService.mUpdatePrint();
     }
 
+    // 회원 수정
+    @PutMapping("/update")
+    //public boolean mUpdate( @RequestBody MemberDto memberDto ){
+    // MemberDto(no=0, id=null, pw=144, name=유재석, email=null, phone=010-4444-4444)
+    public boolean mUpdate(@RequestBody Map<String , String> map ){
+        // {pw=144, newPw=324234, name=유재석, phone=010-4444-4444}
+        System.out.println("map = " + map);
+        return memberService.mUpdate( map );
+    }
 
 //    // 8. 회원 정보 수정
 //    @PutMapping("/update")

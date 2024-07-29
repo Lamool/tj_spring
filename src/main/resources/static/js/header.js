@@ -4,19 +4,34 @@ console.log('header.js');
 doLoginCheck();
 function doLoginCheck() {
     $.ajax({
-        async : false,
+        async : false,  // 동기화
         method : 'get',
         url : "/member/login/check",
-        success : (result) => {
-            console.log(result);
+        success : (result) => { console.log(result);
+            let html = '';
+
+            // 로그인 상태에 따른 메뉴 구성
             if(result == '') {
+                // 비로그인일 때
                 console.log('비로그인');
+                html += `
+                        <li class="nav-item"> <a class="nav-link" href="/member/signup">회원가입</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="/member/login">로그인</a> </li>
+                        `
             } else {
+                // 로그인일 때
                 console.log('로그인');
+                html += `
+                        <li class="nav-item"> ${result.id} 님 </li>
+                        <li class="nav-item"> <a class="nav-link" href="#" onclick="doLogout()">로그아웃</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/member/mypage">내정보</a> </li>
+                        `
             }
-        }
-    })
-}
+            // 메뉴 출력
+            document.querySelector('#loginMenu').innerHTML = html;
+        }   // success end
+    })  // ajax end
+}   // doLoginCheck end
 
 // 2. 로그아웃
 function doLogout() {

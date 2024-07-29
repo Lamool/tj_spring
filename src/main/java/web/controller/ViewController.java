@@ -44,7 +44,7 @@ public class ViewController {
     }
 
 
-    // ============= [3] 게시판 관련 =============
+    // ============= [3] 게시판 관련 ============= //
     // 전체 게시물 페이지
     @GetMapping("/board")
     public String board() {
@@ -71,5 +71,10 @@ public class ViewController {
 
 
 
+    // ============= [4] api 관련 ============= //
+    @GetMapping("/api")
+    public String api() {
+        return "/api/datago.html";
+    }
 
 }

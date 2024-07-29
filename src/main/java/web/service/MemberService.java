@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
 
+import java.util.Map;
+
 @Service
 public class MemberService {
 
@@ -112,6 +114,17 @@ public class MemberService {
         return memberDao.mUpdatePrint(loginNo);
     }
 
+    // [8] 수정
+    public boolean mUpdate( Map<String , String> map ){
+        // 1. 현재 로그인된 회원번호 추출
+        MemberDto loginDto = mLoginCheck();
+        if( loginDto == null ) return false;
+        int loginNo = loginDto.getNo();
+        // 2. 로그인된 회원번호를 map 엔트리 추가
+        map.put( "no" , String.valueOf(loginNo) );
+        //map.put( "no" , loginNo+"" );
+        return memberDao.mUpdate( map );
+    }
 
 
 //    // 8. 회원 정보 수정
