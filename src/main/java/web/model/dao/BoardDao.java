@@ -68,16 +68,57 @@ public class BoardDao extends Dao {
         return false;
     }
 
+    // 3-2. 전체 게시물 수 반환 처리, 조건추가1) 카테고리
+    public int getTotalBoardSize(int bcno) {
+        try {
+            String sql = "select count(*) as 총게시물수 from board ";
+
+            // 카테고리가 존재하면, 0 : 카테고리가 없다는 의미, 1 이상 : 카테고리의 pk 번호
+            if (bcno >= 1) {
+                sql += " where bcno = " + bcno;
+            }
+            System.out.println("sql = " + sql);
+                // 1. 전체보기 : select count(*) as 총게시물수 from board
+                // 2. 카테고리 보기 : select count(*) as 총게시물수 from board where bcno = 숫자
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);    // "총게시물수"
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
     // 3. 게시물 전체 출력
-    public ArrayList<BoardDto> bPrint() {
-        System.out.println("BoardDao.bPrint");
+    public List<BoardDto> bFindAll(int startRow, int pageBoardSize, int bcno) {
+        System.out.println("BoardDao.bFindAll");
         ArrayList<BoardDto> list = new ArrayList<>();
 
         try {
-            String sql = "select * from board b inner join member m on b.no = m.no order by bdate desc;";
+            String sql = "select * " +                       // 1. 조회
+                    " from board b inner join member m " + // 조인 테이블
+                    " on b.no = m.no ";        // 3. 조인 조건
+
+            // 4. 일반 조건
+                // 전체보기이면 where절 생략 , bcno = 0 이면
+                // 카테고리별 보기이면 where절 추가 , bcmo >= 1 이상
+            if (bcno >= 1) {
+                sql += " where bcno = " + bcno;
+            }
+
+            // 5. 정렬조건, 내림차순
+            sql += " order by b.bno desc ";
+            // 6. 레코드 제한, 페이징처리
+            sql += " limit ?, ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, startRow);
+            ps.setInt(2, pageBoardSize);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                // 레코드 를 하나씩 조회해서 Dto vs Map 컬렉션
                 BoardDto boardDto = BoardDto.builder()
                         .bno(rs.getLong("bno"))
                         .btitle(rs.getString("btitle"))

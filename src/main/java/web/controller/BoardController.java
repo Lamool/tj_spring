@@ -3,6 +3,7 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import web.model.dto.BoardDto;
+import web.model.dto.BoardPageDto;
 import web.service.BoardService;
 
 import java.util.ArrayList;
@@ -35,16 +36,20 @@ public class BoardController {
     }
 
     // 3. 게시물 전체 출력
-    @GetMapping("/print")
-    public ArrayList<BoardDto> bPrint() {
-        System.out.println("BoardController.bPrint");
-        return boardService.bPrint();
+    @GetMapping("/find/all")
+    public BoardPageDto bFindAll(BoardPageDto pageDto) {
+        // 매개변수
+        // 1. page : 페이징 처리에서 사용할 현재 페이지번호
+        // 2. bcno : 현재 선택된 카테고리 번호
+        System.out.println("BoardController.bFindAll");
+        return boardService.bFindAll(pageDto);
     }
 
     // 4. 게시물 개별 조회 처리
     @GetMapping("/bview")
     public BoardDto bView(int bno) {
         System.out.println("BoardController.bView");
+
         return boardService.bView(bno);
     }
 
