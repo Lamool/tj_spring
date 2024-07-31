@@ -1,5 +1,7 @@
 console.log("write.js");
 
+loginCheck();       // 로그인 상태 체크
+
 // 1. 카테고리 호출, 실행조건 : js 열렸을 때
 bcFindAll();
 function bcFindAll() {
@@ -109,4 +111,19 @@ $(document).ready(function() {
 });
 
 
+// 4. 로그인 체크
+function loginCheck() {
+    $.ajax ({
+        async : false,
+        method : "get",
+        url : "/member/login/check",
+        success : r => {    console.log(r);
+            if ('' == r) {
+                alert('글쓰기는 로그인 후 가능합니다');
+                location.href = '/member/login';
+            }
+        }
+
+    })
+}
 

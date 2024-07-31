@@ -41,6 +41,8 @@ public class BoardController {
         // 매개변수
         // 1. page : 페이징 처리에서 사용할 현재 페이지번호
         // 2. bcno : 현재 선택된 카테고리 번호
+        // 3. searchKey : 검색 조회시 사용되는 필드명
+        // 4. searchKeyword : 검색 조회시 사용되는 필드의 값
         System.out.println("BoardController.bFindAll");
         return boardService.bFindAll(pageDto);
     }

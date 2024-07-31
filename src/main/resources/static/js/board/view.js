@@ -35,12 +35,31 @@ function boardView() {      console.log('boardView()');
                     <div> 작성자 : ${r.id} , 조회수 : ${r.bview} , 작성일 : ${r.bdate}  </div>
                     <div> 제목 : ${r.btitle} </div>
                     <div> 내용 : ${r.bcontent} </div>
-                    <div> 첨부파일 : ${r.bfile} <a href="/file/download?filename=${r.bfile}">다운로드</a> </div>
+                    `
+                    if (r.bfile == null) {  // 첨부파일이 없을 때
+                        html += '<div> 첨부파일 : 없음</div>';
+                    } else {    // 첨부파일이 있을 때
+                        html += `<div> 첨부파일 : ${r.bfile.split('_')[1]} <a href="/file/download?filename=${r.bfile}">다운로드</a> </div>`;
+                    }
+
+
+                    // if (r.bfile == null) {  // 첨부파일이 없을 때
+                    //     document.querySelector('.bFile').innerHTML = '';
+                    // } else {    // 첨부파일이 있을 때
+                    //     document.querySelector('.bFile').innerHTML = `${r.bfile.split('_')[1]} <a href="/file/download?filename=${r.bfile}">다운로드</a>`;
+                    // }
+
+                    
+
+            html += `
                     <div>
                         <button type="button" onclick="location.href='/board/update?bno=${r.bno}'">수정</button>
                         <button type="button" onclick="doBoardDelete(${r.bno})">삭제</button>
                     </div>
                     `
+
+
+
 
             console.log(html);
 
@@ -53,3 +72,5 @@ function boardView() {      console.log('boardView()');
     });
 
 }
+
+
