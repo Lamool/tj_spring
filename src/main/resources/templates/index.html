@@ -3,10 +3,29 @@
 <head>
     <meta charset='utf-8'>
     <title>Title</title>
+    <style>
+        .aaa {
+            width: 770px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 0 auto;
+    }
+    </style>
 </head>
 <body>
     <div th:replace="~{/header.html :: header}"></div>
-    메인페이지
+
+    <div class="aaa">
+        메인페이지
+        <input type="date" class="dateInput" onchange="onDate()"/>
+    </div>
     <div th:replace="~{/footer.html :: footer}"></div>
+
+    <script>
+        function onDate(){
+            let date = document.querySelector('.dateInput').value;
+            console.log( date )
+        }
+    </script>
 </body>
 </html>
