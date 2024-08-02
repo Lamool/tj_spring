@@ -55,6 +55,26 @@ public class BoardController {
         return boardService.bView(bno);
     }
 
+    // 5. 게시물의 댓글 쓰기 처리
+    @PostMapping("/reply/write")        // ?? 왜 post - JSON으로 값을 요청하고 응답할 수 있는 게 post랑 put이라서? get이랑 delete는 X. post 저장
+    // @ResponseBody - JSON으로 반환하는 애, @RequestBody : JSON으로 요청하는 애
+    // JSON이 아닌 일반 폼, 파라미터로 하고 싶다 그러면 @RequestParam
+    // day07
+    // 왜 @RequestBody를 썼는지
+    public boolean bReplyWrite(@RequestBody Map<String, String> map) {
+        System.out.println("BoardController.bReplyWrite");  // ?? 왜 map
+        System.out.println("map = " + map);
+        return boardService.bReplyWrite(map);   // ? 왜 service
+    }
+
+    // 6. 댓글 출력 처리
+    @GetMapping("/reply/print")
+    public List< Map<String, String> > bReplyPrint(int bno) {
+        System.out.println("BoardController.bReplyPrint");
+        System.out.println("bno = " + bno);
+
+        return boardService.bReplyPrint(bno);
+    }
 
 
 

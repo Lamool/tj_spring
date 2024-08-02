@@ -3,6 +3,7 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 import web.model.dao.BoardDao;
@@ -147,9 +148,38 @@ public class BoardService {
         boardDao.bViewIncrease(bno);
         return boardDao.bView(bno);
     }
+    
+    // 5. 게시물의 댓글 쓰기 처리
+    // ?? 왜?? Mapping 없는지??
+    // Spring Boot에서 @GetMapping과 같은 어노테이션은 주로 컨트롤러 클래스에서 사용된다.
+    // @GetMapping은 HTTP GET 요청을 처리하는 메서드를 정의할 때 사용되며, 일반적으로 웹 요청을 처리하고 클라이언트에게 응답을 반환하는 역할을 한다.
+    // Service와 DAO에서는 주로 비즈니스 로직과 데이터 접근 로직을 구현하므로, HTTP 요청을 처리하는 것이 아니라는 점에서 @GetMapping과 같은 어노테이션을 사용하지 않는다.
+    public boolean bReplyWrite(Map<String, String> map) {
+        System.out.println("BoardService.bReplyWrite");
+        System.out.println("map = " + map);
 
+        // 작성자(no)는 별도의 클라이언트로부터 입력받는 구조 아니다.
+            // 회원제 댓글이라는 가정(로그인 정보는 로그인 객체 저장된 상태)
+            // 왜?? 로그인 정보는 세션객체에 저장하는지??
+        Object object = memberService.mLoginCheck();
+            // 왜?? object 타입인지??
+        if (object == null) {
+            return false;
+        }
+        MemberDto loginDto = (MemberDto)object;
+        int no = loginDto.getNo();
+        map.put("no", String.valueOf(no));  // 왜?? String.valueOf()
 
+        return boardDao.bReplyWrite(map);   // ?? 왜 dao 사용하는지?
+    }
 
+    // 6. 댓글 출력 처리
+    public List< Map<String, String> > bReplyPrint(int bno) {
+        System.out.println("BoardService.bReplyPrint");
+        System.out.println("bno = " + bno);
+
+        return boardDao.bReplyPrint(bno);
+    }
 
 
 }

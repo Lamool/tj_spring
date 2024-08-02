@@ -205,6 +205,59 @@ public class BoardDao extends Dao {
         return false;
     }
 
+    // 5. 게시물의 댓글 쓰기 처리
+    public boolean bReplyWrite(Map<String, String> map) {
+        System.out.println("BoardDao.bReplyWrite");
+        System.out.println("map = " + map);
+
+        // brindex, brcontent, no, bno 왜?? 네 가지를 저장하는지?
+        try {
+            String sql = "insert into breply(brindex, brcontent, no, bno) values(?, ?, ?, ?);";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(map.get("brindex")));     // 왜?? Integer.parseInt 하는지?
+            ps.setString(2, map.get("brcontent"));
+            ps.setInt(3, Integer.parseInt(map.get("no")));
+            ps.setInt(4, Integer.parseInt(map.get("bno")));
+
+            int count = ps.executeUpdate();
+            if (count == 1) return true;        // 왜 if (count == 1) 하는지?
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return false;   // 왜?? true/false 사용하는지?
+    }
+
+    // 6. 댓글 출력 처리
+    public List< Map<String, String> > bReplyPrint(int bno) {
+        System.out.println("BoardDao.bReplyPrint");
+        System.out.println("bno = " + bno);
+
+        // - list 컬렉션 선언 , map컬렉션(객체)을 여러 개 저장하기 위해 list 선언
+        List< Map<String, String> >  list = new ArrayList<>();
+
+        try {
+            String sql = "select * from breply inner join member on breply.no = member.no where bno= ?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, bno);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String,String> map = new HashMap<>();       // - map 컬렉션/객체 선언
+                // - map 컬렉션/객체 엔트리 6개 추가, 댓글번호, 댓글인덱스, 댓글내용, 작성일, 댓글을 작성한 작성자의 회원번호, 댓글이 위치한 게시물번호
+                map.put("brno", String.valueOf(rs.getInt("brno")));
+                map.put("brindex", String.valueOf(rs.getInt("brindex")));
+                map.put("brcontent", String.valueOf(rs.getString("brcontent")));
+                map.put("brdate", String.valueOf(rs.getString("brdate")));
+                map.put("name", String.valueOf(rs.getString("name")));
+                map.put("bno", String.valueOf(rs.getInt("bno")));
+                list.add( map );    // - map 컬렉션/객체를 리스트/객체에 담기
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
 
 
 

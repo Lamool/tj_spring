@@ -74,3 +74,80 @@ function boardView() {      console.log('boardView()');
 }
 
 
+
+// 2. 댓글 쓰기
+function onReplyWrite() {   console.log('onReplyWrite()');
+    // 1. 입력받은 댓글내용 가져오기
+    let brcontent = document.querySelector('.brcontent').value;
+
+    // 2. 객체화
+    let info = {
+        brindex : 0,    // 댓글분류, 0이면 상위댓글
+        brcontent : brcontent,
+        bno : bno       // 현재 보고 있는 게시물 번호 (view.js 상단에서 선언된 변수)
+    }    
+
+    $.ajax({    // 왜 ajax를 쓰는가
+        async : false,
+        method : 'post',
+        url : "/board/reply/write",
+        data : JSON.stringify(info),    // 왜? JSON.stringify 사용하는지?
+        contentType: "application/json",    // 왜? application/json 사용하는지?
+            // contentType: "application/x-www-form-urlencoded", : ajax 기본값(생략시)
+            // contentType: false,   --> contentType : multipart/form-data 첨부파일(바이너리)
+            // contentType: "application/json"
+        success : r => {    console.log(r);
+            if (r == true) {
+                alert('댓글쓰기 성공');
+                onReplyPrint();
+            } else {
+                alert('댓글쓰기 실패 : 로그인 후 댓글쓰기가 가능합니다.');
+            }
+
+        }   // success end
+
+    }); // ajax end
+
+}   // onReplyWrite() end
+
+
+
+// 3. 댓글 출력
+onReplyPrint();
+function onReplyPrint() { console.log('onReplyPrint()');
+    let rmap = {};
+
+    $.ajax({
+        async : false,
+        method : 'get',
+        url : "/board/reply/print",
+        data : { bno : bno },
+        success : result => {    console.log(result);
+            rmap = result;
+        
+        }
+    })  // ajax end
+
+    // 1. 어디에
+    let brpint = document.querySelector('.brprint');
+    
+    // 2. 무엇을
+    let html = ``;
+
+    // let list = rmap.data;
+    // console.log(rmap);
+    // console.log(rmap.data);
+    // console.log(list);
+    rmap.forEach( r =>{ console.log(r.brcontent);
+        html += `
+                <div>
+                    <div> ${ r.brcontent } </div>
+                    <div> ${ r.brdate } </div>
+                    <div> ${ r.name } </div>
+                </div>
+                `
+    })
+
+    // 3. 출력
+    brpint.innerHTML = html;
+}
