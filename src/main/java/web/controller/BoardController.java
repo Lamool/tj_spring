@@ -60,7 +60,7 @@ public class BoardController {
     // @ResponseBody - JSON으로 반환하는 애, @RequestBody : JSON으로 요청하는 애
     // JSON이 아닌 일반 폼, 파라미터로 하고 싶다 그러면 @RequestParam
     // day07
-    // 왜 @RequestBody를 썼는지
+    // 왜 @RequestBody를 썼는지.         안 써주면 값을 못가져옴.??
     public boolean bReplyWrite(@RequestBody Map<String, String> map) {
         System.out.println("BoardController.bReplyWrite");  // ?? 왜 map
         System.out.println("map = " + map);
