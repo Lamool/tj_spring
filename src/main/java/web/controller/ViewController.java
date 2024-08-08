@@ -77,5 +77,17 @@ public class ViewController {
         return "/api/datago.html";
     }
 
+    // ============= [5] 제품 관련 ============= //
+    @GetMapping("/product/register")
+    public String pRegister() {
+        return "/product/register.html";
+    }
+
+    @GetMapping("/product")
+    public String product() {
+        return "/product/product.html";
+    }
+
+
 
 }

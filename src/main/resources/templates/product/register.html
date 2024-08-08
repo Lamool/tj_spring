@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:replace="~{/header.html :: header}"></div>
+
+    <div class="container">
+        <form id="productForm">
+            제품명 : <input name="ptitle" type="text" /> <br/>
+            제품설명 : <textarea name="pcontent"></textarea> <br/>
+            제품가격 : <input name="pprice" type="text" /> <br/>
+
+
+            <input type="file" name="files" multiple accept="image/jpeg, image/gif, image/png" />
+            <!-- ((첨부파일 여러 개 올릴 때는 multiple을 써야 한다)) -->
+             <!-- multiple : 여러 개 첨부, accept="허용할첨부파일확장자" -->
+
+            <button type="button" onclick="onRegister()">등록</button>
+        </form>
+    </div>
+
+    <script src="/js/product/register.js"></script>
+    <div th:replace="~{/footer.html :: footer}"></div>
+
+</body>
+</html>

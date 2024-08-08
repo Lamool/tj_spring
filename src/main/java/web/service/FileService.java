@@ -18,8 +18,18 @@ import java.util.UUID;
 
 @Service
 public class FileService {
-    // [8]
-    String uploadPath = "C:\\Users\\tj-bu-703-14\\Desktop\\tj_spring\\src\\main\\resources\\static\\upload\\";
+    /*
+        프로젝트명
+            - build 폴더 : 배포된 클래스/파일들
+            - src 폴더 : 배포 전 개발자가 코드(파일)을 작성하는 곳
+        배포 : 내 코드를 웹서버에 올림/빌드 으로써 외부(클라이언트)로부터 리소스 제공할 수 있다.
+    */
+
+    // [8] 파일이 저장된 위치 경로 정의 필드
+        // 프로젝트내 upload 폴더 경로
+    // String uploadPath = "C:\\Users\\tj-bu-703-14\\Desktop\\tj_spring\\src\\main\\resources\\static\\upload\\";
+        // 프로젝트내 build -> upload 폴더 경로  // 이미지 올린 거 바로 안 보이고 아이콘 형태(?)로 뜸. 바로 보일 수 있게 하기 위해서 이렇게 변경. ))
+    String uploadPath = "C:\\Users\\tj-bu-703-14\\Desktop\\tj_spring\\build\\resources\\main\\static\\upload\\";
 
 
     // [1] 파일 업로드
