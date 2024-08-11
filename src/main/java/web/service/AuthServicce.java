@@ -33,7 +33,7 @@ public class AuthServicce {
                 // 1. 서버 세션 객체 속성의 인증 코드를 저장
             request.getSession().setAttribute("authCode", authCode);    // 들어갈 때는 String이었지만 저장될 때는 Object
                 // 2. 서버 세션 객체의 생명주기(세션이 유지되는 시간)  // 초 기준 // 10초 동안 세션 유지하고 10초 후 삭제
-            request.getSession().setMaxInactiveInterval(10);
+            request.getSession().setMaxInactiveInterval(30);
             // 이메일 전송
             //emailSend(email, "000 홈페이지의 회원가입 인증코드", "인증코드 : " + authCode);
 

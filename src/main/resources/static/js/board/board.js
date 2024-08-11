@@ -31,7 +31,7 @@ function doBoardFindAll(page) {     console.log("boardPrint()");
     })  // ajax end
 
     // 1. 어디에
-    let bTbody = document.querySelector('.boardBody');
+    let boardBody = document.querySelector('.boardBody');
 
     // 2. 무엇을
     let html = ``;
