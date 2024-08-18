@@ -43,15 +43,16 @@
 
 
     5. MultipartFile
-        1. 파일 이름 정의, 중복배제한 식별 가능한 파일명 정의
-            Stinguuid = UUI
-
-
-        2.
-
-
-        3. 업로드, 바이트로 된 데이터를 해당 경로에 바이트를 파일로 생성
-
+            1. 파일 이름 정의 , 중복배제한 식별 가능한 파일명 정의
+                String fileName = multipartFile.getOriginalFilename();
+                - UUID 조합
+                    String uuid = UUID.randomUUID().toString();
+                    fileName = uuid +"_"+ fileName.replaceAll( "_" , "-" );
+            2. 업로드 할 경로
+                1. 개발자 폴더 : "C:\\Users\\TJ-BU-703-강사PC\\Desktop\\tj_2024A_spring\\src\\main\\resources\\static\\upload\\";
+                2. 배포된 (톰캣)서버 폴더 : "C:\\Users\\TJ-BU-703-강사PC\\Desktop\\tj_2024A_spring\\build\\resources\\main\\static\\upload\\"
+            3. 업로드 , 바이트로 된 데이터를 해당 경로에 바이트를 파일로 생성
+                .transferTo(file);
 
 
 
