@@ -97,15 +97,22 @@
 
 [2-2] 동작 구조
     1. 클라이언트가 HTTP 이용한 WAS에게 요청을 보낸다.
-    2. AWS는 관련된 Servlet을 생성한다.
-    3. 스레드 생성 또는
+    2. AWS는 관련된 Servlet을 최초 요청시 생성[init()] 또는 할당 한다.
+    3. 스레드 생성 또는 할당 받는다.
+    4. HttpServletRequest, HttpServletResponse 객체를 생성 한다.
+    5. 스레드는 servlet service 메소드 호출한다.
+    6. service 메소드는 각 http method 요청에 맞게 doGet(), doPost() 등등 메소드를 호출한다.
+    7. doGet() 또는 doPost()는 HttpServletRequest, HttpServletResponse 매개변수 받아서 요청/응답 정보를 확인할 수 있다.
+    8. HttpServletResponse 객체를 이용한 Web server에게 응답 데이터 전달한다.
+    9. 생성된 스레드는 종료하고, HttpServletRequest, HttpServletResponse 객체도 제거한다.
+        - * Servlet 객체는 제거하지 않는다. 나중에 재호출 재사용 하기 위해 제거하지 않는다.
 
-    9. 생성된 스레드는
-
-Client ------ HTTP -----> was (웹서버)
-    - 브라우저              web server --------->
-    - ajax                 - 정적파일
-    - 모바일
+Client ----- HTTP ----> was( 웹서버 )
+    - 브라우저              web server  --------->  web container   ---- 스레드 생성/할당 ---> 서블릿 생성
+    - ajax                 - 정적파일                - 동적 파일                                - init()
+    - 모바일                                                                                  - service() ----> doGet(),doPost() ----> 추후 작업
+                                                                                             - destroy()
+      <----- HTTP ----                 <-----------
 
 .service() ((MVC 그 Service 아님))
 
@@ -125,12 +132,4 @@ Client ------ HTTP -----> was (웹서버)
         3. class loading 한다.
         4. 요청에 대한 응답 처리 해준다.
         5. 서블릿 객체 소멸된다. (서버가 종료될 때)
-
-
-
-
-
-
-
-
 
