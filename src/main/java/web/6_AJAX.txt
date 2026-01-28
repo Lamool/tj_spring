@@ -41,15 +41,3 @@ AJAX
             JSON.parse( )     : 문자열타입을 JS객체타입 으로 변환
                 "{ key : value }" => { key : value }
 
-
-
-
-
-
-
-
-
-
-
-
-

@@ -28,17 +28,3 @@
         - 해당 컨트롤 클래스의 메소드가 HTTP로 응답 할때 데이터를 JAVA객체 를 JSON 으로 변환
         - HTTP response contentType : "application/json"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

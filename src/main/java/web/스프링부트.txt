@@ -76,6 +76,6 @@
 
         - 현 수업에서 타임리프 사용
             [1] 그레이들
-            implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+                implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
             [2] 타임리프 파일 위치
                 - resources > templates > .html
